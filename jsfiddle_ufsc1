@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+        data.addRows([
+          // Necessidades tecnológicas
+          ['Necessidades Tecnológicas', 'Desvantagem Tecnológica', 1],
+          ['Necessidades Tecnológicas', 'Exclusão Social e Digital', 1],
+          ['Exclusão Social e Digital', 'Centralizar em Laboratório de Computação', 1],
+
+          // Falta de conhecimentos básicos de computação
+          ['Falta de Conhecimentos Básicos', 'Dificuldade de Aprendizado', 2],
+          ['Dificuldade de Aprendizado', 'Instrutor Presencial do CnE/UFSC', 2],
+          ['Dificuldade de Aprendizado', 'Cartões para Senhas', 1],
+
+          // Necessidades de tutoria
+          ['Necessidades de Tutoria', 'Dificuldade em Acompanhar Aulas', 2],
+          ['Dificuldade em Acompanhar Aulas', 'Instrutores de AI/ML', 1],
+          ['Dificuldade em Acompanhar Aulas', 'Estudantes como Tutores', 1],
+
+          // Adaptação do material instrucional
+          ['Adaptação do Material Instrucional', 'Dificuldade de Entender o Conteúdo', 1],
+          ['Dificuldade de Entender o Conteúdo', 'Criação de Vídeos Curto', 1]
+        ]);
+
+        var colors = {
+          'Necessidades Tecnológicas': '#FFFF00', // Amarelo
+          'Falta de Conhecimentos Básicos': '#FFFF00', // Amarelo
+          'Necessidades de Tutoria': '#FFFF00', // Amarelo
+          'Adaptação do Material Instrucional': '#FFFF00', // Amarelo
+          'Desvantagem Tecnológica': '#FF0000', // Vermelho
+          'Exclusão Social e Digital': '#FF0000', // Vermelho
+          'Dificuldade de Aprendizado': '#FF0000', // Vermelho
+          'Dificuldade em Acompanhar Aulas': '#FF0000', // Vermelho
+          'Centralizar em Laboratório de Computação': '#0000FF', // Azul
+          'Instrutor Presencial do CnE/UFSC': '#0000FF', // Azul
+          'Cartões para Senhas': '#0000FF', // Azul
+          'Instrutores de AI/ML': '#0000FF', // Azul
+          'Estudantes como Tutores': '#0000FF', // Azul
+          'Criação de Vídeos Curto': '#0000FF' // Azul
+        };
+
+        var options = {
+          width: 800,
+          height: 600,
+          sankey: {
+            node: {
+              colors: data.getDistinctValues(0).concat(data.getDistinctValues(1)).map(node => colors[node] || '#888888')
+            }
+          }
+        };
+
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="sankey_basic" style="width: 900px; height: 600px;"></div>
+  </body>
+</html>
