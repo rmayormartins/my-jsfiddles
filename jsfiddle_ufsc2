@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+        data.addRows([
+          // Falta de infraestrutura
+          ['Falta de infraestrutura', 'Divisão social', 1],
+          ['Falta de infraestrutura', 'Exclusão digital', 1],
+          ['Falta de infraestrutura', 'Afeta as atividades e envolvimento dos estudantes', 1],
+          ['Divisão social', 'Uso de atividades desconectadas', 1],
+          ['Exclusão digital', 'Uso de atividades desconectadas', 1],
+          ['Afeta as atividades e envolvimento dos estudantes', 'Uso de atividades desconectadas', 1],
+          ['Afeta as atividades e envolvimento dos estudantes', 'Ferramentas mais acessíveis', 1],
+          ['Afeta as atividades e envolvimento dos estudantes', 'Dispositivos facilitados por parcerias e projetos', 1],
+
+          // Falta de conhecimento básico de computação
+          ['Falta de conhecimento básico de computação ou experiência no uso de dispositivos', 'Exclusão digital', 1],
+          ['Falta de conhecimento básico de computação ou experiência no uso de dispositivos', 'Dificuldade no aprendizado', 1],
+          ['Falta de conhecimento básico de computação ou experiência no uso de dispositivos', 'Afeta as atividades dos estudantes', 1],
+          ['Exclusão digital', 'Co-construção do curso com os estudantes', 1],
+          ['Dificuldade no aprendizado', 'Co-construção do curso com os estudantes', 1],
+          ['Afeta as atividades dos estudantes', 'Co-construção do curso com os estudantes', 1],
+          ['Afeta as atividades dos estudantes', 'Introdução à computação com foco em STEM e pensamento computacional', 1],
+
+          // Ensino para contextos específicos
+          ['Ensino para contextos específicos (grupos, etnia, sexo, área de residência)', 'Divisão social', 1],
+          ['Ensino para contextos específicos (grupos, etnia, sexo, área de residência)', 'Dificuldade de comunicação', 1],
+          ['Ensino para contextos específicos (grupos, etnia, sexo, área de residência)', 'Dificuldade de compreensão', 1],
+          ['Divisão social', 'Currículo específico para determinados grupos', 1],
+          ['Dificuldade de comunicação', 'Currículo específico para determinados grupos', 1],
+          ['Dificuldade de compreensão', 'Currículo específico para determinados grupos', 1],
+          ['Divisão social', 'Apresentação de oportunidades de carreira para grupos específicos', 1],
+          ['Dificuldade de comunicação', 'Apresentação de oportunidades de carreira para grupos específicos', 1],
+          ['Dificuldade de compreensão', 'Apresentação de oportunidades de carreira para grupos específicos', 1],
+        ]);
+
+        var options = {
+          width: 960,
+          height: 800,
+          sankey: {
+            node: {
+              label: {
+                fontName: 'Arial',
+                fontSize: 11,
+                color: '#000',
+                bold: false,
+                italic: false
+              }
+            }
+          }
+        };
+
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+<body>
+  <div id="sankey_basic" style="width: 960px; height: 800px;"></div>
+</body>
+</html>
